@@ -1,0 +1,35 @@
+:root {
+  /* Brand — sampled from the Shankh Logistics logo */
+  --teal: #20a38d;
+  --teal-600: #198a77;
+  --teal-700: #126e5f;
+  --teal-900: #0b3d36;
+  --teal-50: #e8f5f2;
+  --charcoal: #383b3c;
+  --ink: #1b1f20;
+  --mist: #f2f6f5;
+  --line: #dce5e2;
+  --white: #ffffff;
+  --muted: #5a6467;
+
+  /* Type */
+  --font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --header-h: 76px;
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+
+  /* Shape — small radii echo the rounded corners of the logo mark */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(27, 31, 32, 0.06), 0 2px 8px rgba(27, 31, 32, 0.05);
+  --shadow-md: 0 10px 30px -8px rgba(27, 31, 32, 0.18);
+  --shadow-lg: 0 24px 60px -16px rgba(27, 31, 32, 0.28);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

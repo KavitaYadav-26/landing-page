@@ -1,0 +1,9 @@
+.services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service { display: flex; flex-direction: column; gap: 0.9rem; }
+.service .icon-badge { margin-bottom: 0.6rem; }
+.service p { color: var(--muted); font-size: 1rem; }
+.service ul { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); display: grid; gap: 0.5rem; font-size: 0.925rem; font-weight: 500; }
+.service li { display: flex; align-items: center; gap: 0.6rem; }
+.service li svg { color: var(--teal); flex-shrink: 0; }
+@media (max-width: 960px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .services__grid { grid-template-columns: 1fr; } }

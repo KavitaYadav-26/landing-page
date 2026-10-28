@@ -1,0 +1,12 @@
+.booking-form { display: grid; gap: 1.1rem; }
+.booking-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.booking-form__note { font-size: 0.875rem; color: var(--muted); text-align: center; }
+.spin { animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 560px) { .booking-form__grid { grid-template-columns: 1fr; } }
+
+.booking-success { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; padding-block: 1rem; }
+.booking-success > svg { color: var(--teal); }
+.booking-success p { color: var(--muted); }
+.booking-success strong { color: var(--ink); }
+.booking-success__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }

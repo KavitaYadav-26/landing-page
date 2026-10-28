@@ -1,0 +1,12 @@
+.process { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); counter-reset: step; }
+.process__step { position: relative; }
+.process__top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+/* connector line between steps, slanted like the logo bars is overkill here: keep it a calm rule */
+.process__step:not(:last-child) .process__top::after {
+  content: ''; flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--teal) 0 8px, transparent 8px 14px);
+}
+.process__num { order: 3; font-family: var(--font-display); font-weight: 700; color: var(--teal-700); }
+.process__step h3 { margin-bottom: 0.6rem; }
+.process__step p { color: var(--muted); font-size: 1rem; }
+@media (max-width: 960px) { .process { grid-template-columns: repeat(2, 1fr); } .process__step:nth-child(2n) .process__top::after { display: none; } }
+@media (max-width: 560px) { .process { grid-template-columns: 1fr; } .process__top::after { display: none !important; } }

@@ -1,0 +1,14 @@
+.why { position: relative; overflow: hidden; isolation: isolate; }
+/* two slanted bars echo the logo mark */
+.why::before, .why::after {
+  content: ''; position: absolute; z-index: -1; width: 11rem; height: 140%; top: -20%;
+  transform: skewX(-22deg); background: rgba(255, 255, 255, 0.025); border-radius: 18px;
+}
+.why::before { right: 14%; }
+.why::after { right: -2%; background: rgba(32, 163, 141, 0.09); }
+.why__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+.why__item { display: flex; flex-direction: column; gap: 0.9rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.why__item .icon-badge { margin-bottom: 0.5rem; }
+.why__item p { font-size: 1rem; color: rgba(255, 255, 255, 0.68); }
+@media (max-width: 960px) { .why__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .why__grid { grid-template-columns: 1fr; } }

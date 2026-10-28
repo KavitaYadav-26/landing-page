@@ -1,0 +1,3 @@
+.faq { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: clamp(1.5rem, 5vw, 4.5rem); align-items: start; }
+.faq .section-heading { margin-bottom: 0; flex-direction: column; align-items: flex-start; }
+@media (max-width: 900px) { .faq { grid-template-columns: 1fr; } .faq .section-heading { margin-bottom: 1.5rem; } }

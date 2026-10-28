@@ -1,0 +1,4 @@
+.section { padding-block: var(--section-y); }
+.section--mist { background: var(--mist); }
+.section--dark { background: var(--ink); color: rgba(255, 255, 255, 0.78); }
+.section--dark h2, .section--dark h3 { color: var(--white); }

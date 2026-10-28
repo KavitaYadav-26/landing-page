@@ -15,7 +15,14 @@ export async function submitBooking(payload: BookingPayload): Promise<BookingRes
   const reference = `SL-${Date.now().toString().slice(-6)}`
   const message = [
     `Hello Shankh Logistics, I would like to book a shipment (Ref ${reference}).`,
+    `Booking type: ${payload.role === 'broker' ? 'Broker' : 'Customer'}`,
     `Name: ${payload.name}`,
+    ...(payload.role === 'broker'
+      ? [
+          `Firm: ${payload.firm}${payload.gst ? ` (GST ${payload.gst})` : ''}`,
+          `Party: ${payload.partyName}, ${payload.partyPhone}`,
+        ]
+      : []),
     `Route: ${payload.pickup} to ${payload.drop}`,
     `Cargo: ${payload.cargo}${payload.weight ? `, ${payload.weight}` : ''}`,
     `Vehicle: ${payload.vehicle || 'Not sure'}`,

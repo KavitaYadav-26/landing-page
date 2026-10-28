@@ -17,7 +17,7 @@ export function Booking({ draft }: { draft: BookingDraft }) {
     <Section id="booking" tone="mist" labelledBy="booking-title">
       <div className="booking">
         <aside className="booking__info">
-          <h2 id="booking-title">Book your shipment</h2>
+          <h2 id="booking-title">Book your Customer</h2>
           <p>
             Fill in the details and our team will call you back with a confirmed rate. Prefer to talk
             first? Reach us directly.

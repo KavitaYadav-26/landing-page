@@ -1,0 +1,48 @@
+.modal {
+  position: fixed; inset: 0; z-index: 300;
+  display: grid; place-items: center; padding: 1.25rem;
+  background: rgba(14, 24, 22, 0.62);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  animation: modal-fade 0.22s var(--ease) both;
+}
+.modal.is-closing { animation: modal-fade-out 0.22s var(--ease) both; }
+
+.modal__dialog {
+  position: relative; width: min(100%, 440px);
+  max-height: calc(100dvh - 2.5rem); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--white); color: var(--charcoal);
+  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+  animation: modal-in 0.3s var(--ease) both;
+}
+.modal__dialog:focus { outline: none; }
+.modal.is-closing .modal__dialog { animation: modal-out 0.22s var(--ease) both; }
+
+.modal__close {
+  position: absolute; top: 0.85rem; right: 0.85rem; z-index: 2;
+  display: grid; place-items: center; width: 38px; height: 38px;
+  border: 0; border-radius: 50%; cursor: pointer;
+  background: var(--mist); color: var(--ink);
+  transition: background-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.modal__close:hover { transform: rotate(90deg); }
+.modal__close--dark { background: rgba(255, 255, 255, 0.14); color: var(--white); }
+.modal__close--dark:hover { background: rgba(255, 255, 255, 0.26); }
+
+@keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes modal-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(12px) scale(0.98); } }
+@keyframes modal-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes modal-sheet-out { from { transform: none; } to { transform: translateY(100%); } }
+
+/* Phones: modal becomes a bottom sheet */
+@media (max-width: 560px) {
+  .modal { align-items: end; padding: 0; }
+  .modal__dialog {
+    width: 100%; max-height: 94dvh;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    animation: modal-sheet-in 0.34s var(--ease) both;
+  }
+  .modal.is-closing .modal__dialog { animation: modal-sheet-out 0.22s var(--ease) both; }
+}

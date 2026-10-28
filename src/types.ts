@@ -18,11 +18,28 @@ export interface BookingDraft {
   vehicle: string
 }
 
+export type BookingRole = 'customer' | 'broker'
+
 export interface BookingPayload extends BookingDraft {
+  role: BookingRole
+  /** broker only */
+  firm: string
+  gst: string
+  partyName: string
+  partyPhone: string
   name: string
   phone: string
   cargo: string
   date: string
   weight: string
   notes: string
+}
+
+export type AuthView = 'login' | 'register'
+
+export interface AuthUser {
+  id: string
+  name: string
+  phone: string
+  email: string
 }

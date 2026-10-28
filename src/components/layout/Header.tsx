@@ -1,21 +1,27 @@
 import { useState } from 'react'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, Phone, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Logo } from '@/components/ui/Logo'
+import { UserMenu } from '@/components/auth/UserMenu'
 import { company, navItems } from '@/data/content'
+import { useAuth } from '../context/AuthContext'
 import { useScrolled } from '@/hooks/useScrolled'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useEscapeKey } from '@/hooks/useEscapeKey'
+import type { AuthView } from '@/types'
 import './Header.css'
 
 export function Header() {
   const scrolled = useScrolled(12)
   const [open, setOpen] = useState(false)
+  const { user, openAuth, signOut } = useAuth()
   const close = () => setOpen(false)
 
   useLockBodyScroll(open)
   useEscapeKey(open, close)
+
+  const openFromMenu = (view: AuthView) => { close(); openAuth(view) }
 
   return (
     <header className={`header ${scrolled || open ? 'header--solid' : ''}`}>
@@ -33,11 +39,20 @@ export function Header() {
         </nav>
 
         <div className="header__actions">
-          {/* <a className="header__phone" href={company.phoneHref}>
-            <Phone size={16} aria-hidden="true" />
-            <span>{company.phone}</span>
+          {/* <a className="header__phone" href={company.phoneHref} aria-label={`Call ${company.phone}`} title={company.phone}>
+            <Phone size={17} aria-hidden="true" />
           </a> */}
-          <Button href="#booking" size="md">Book now</Button>
+
+          {user ? (
+            <UserMenu />
+          ) : (
+            <div className="header__auth">
+              <button type="button" className="header__login" onClick={() => openAuth('login')}>Log in</button>
+              <Button variant="outline" size="md" className="header__register" onClick={() => openAuth('register')}>Register</Button>
+            </div>
+          )}
+
+          <Button href="#booking" size="md" className="header__book">Book now</Button>
           <button
             className="header__toggle"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -58,6 +73,19 @@ export function Header() {
             ))}
           </ul>
         </nav>
+
+        {user ? (
+          <div className="mobile-menu__user">
+            <span>Signed in as <strong>{user.name}</strong></span>
+            <button type="button" onClick={() => { close(); signOut() }}><LogOut size={16} aria-hidden="true" /> Log out</button>
+          </div>
+        ) : (
+          <div className="mobile-menu__auth">
+            <Button variant="outline" size="lg" onClick={() => openFromMenu('login')}>Log in</Button>
+            <Button variant="outline" size="lg" onClick={() => openFromMenu('register')}>Register</Button>
+          </div>
+        )}
+
         <Button href="#booking" size="lg" fullWidth onClick={close}>Book now</Button>
         <a className="mobile-menu__phone" href={company.phoneHref}>
           <Phone size={18} aria-hidden="true" /> {company.phone}

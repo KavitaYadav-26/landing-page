@@ -10,3 +10,52 @@
 .booking-success p { color: var(--muted); }
 .booking-success strong { color: var(--ink); }
 .booking-success__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+
+/* ---------- Customer / Broker tabs ---------- */
+.booking-roles {
+  position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  padding: 4px; margin-bottom: 1.5rem; background: var(--mist); border-radius: var(--r-md);
+}
+.booking-roles__thumb {
+  position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 6px);
+  background: var(--white); border-radius: 8px; box-shadow: var(--shadow-sm), 0 0 0 1.5px var(--teal);
+  transition: transform 0.3s var(--ease);
+}
+.booking-roles[data-role='broker'] .booking-roles__thumb { transform: translateX(calc(100% + 4px)); }
+.booking-roles__tab {
+  position: relative; z-index: 1; display: flex; align-items: center; gap: 0.75rem; text-align: left;
+  padding: 0.7rem 0.85rem; background: none; border: 0; border-radius: 8px; cursor: pointer; color: var(--muted);
+  transition: color 0.2s var(--ease);
+}
+.booking-roles__tab:hover { color: var(--ink); }
+.booking-roles__tab[aria-selected='true'] { color: var(--ink); }
+.booking-roles__icon {
+  display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--white); color: var(--muted); border: 1px solid var(--line);
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.booking-roles__tab[aria-selected='true'] .booking-roles__icon { background: var(--teal); color: var(--white); border-color: var(--teal); }
+.booking-roles__text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.booking-roles__text strong { font-family: var(--font-display); font-size: 0.98rem; font-weight: 600; }
+.booking-roles__text small { font-size: 0.8rem; color: var(--muted); }
+
+/* ---------- Broker & party panel ---------- */
+.booking-form__panel {
+  display: grid; gap: 1.1rem; min-width: 0; margin: 0; padding: 1.1rem 1.1rem 1.25rem;
+  background: var(--mist); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: var(--r-md);
+  animation: booking-panel-in 0.32s var(--ease) both;
+}
+@keyframes booking-panel-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+.booking-form__panel-head { display: flex; align-items: center; gap: 0.75rem; }
+.booking-form__panel-head > span {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--r-sm);
+  background: var(--teal-50); color: var(--teal-700);
+}
+.booking-form__panel-head div { display: flex; flex-direction: column; line-height: 1.3; }
+.booking-form__panel-head strong { font-family: var(--font-display); font-size: 0.98rem; color: var(--ink); }
+.booking-form__panel-head small { font-size: 0.82rem; color: var(--muted); }
+
+@media (max-width: 520px) {
+  .booking-roles__tab { flex-direction: column; text-align: center; gap: 0.4rem; padding: 0.65rem 0.4rem; }
+  .booking-roles__text small { display: none; }
+}

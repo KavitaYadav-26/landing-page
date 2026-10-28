@@ -1,0 +1,35 @@
+.user-menu { position: relative; }
+.user-menu__btn {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.28rem 0.7rem 0.28rem 0.28rem; background: transparent; cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.4); border-radius: 999px; color: inherit;
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 600;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.header--solid .user-menu__btn { border-color: var(--line); }
+.user-menu__btn:hover { border-color: var(--teal); }
+.user-menu__avatar {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--teal); color: var(--white); font-size: 0.9rem; font-weight: 700;
+}
+.user-menu__chev { transition: transform 0.2s var(--ease); }
+.user-menu__btn[aria-expanded='true'] .user-menu__chev { transform: rotate(180deg); }
+
+.user-menu__panel {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 10; width: 250px; padding: 0.4rem;
+  background: var(--white); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg); animation: user-menu-in 0.18s var(--ease) both; transform-origin: top right;
+}
+@keyframes user-menu-in { from { opacity: 0; transform: translateY(-6px) scale(0.97); } to { opacity: 1; transform: none; } }
+.user-menu__who { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.7rem 0.8rem 0.8rem; margin-bottom: 0.3rem; border-bottom: 1px solid var(--line); }
+.user-menu__who strong { font-family: var(--font-display); font-size: 0.98rem; }
+.user-menu__who span { font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
+.user-menu__item {
+  display: flex; align-items: center; gap: 0.65rem; width: 100%; padding: 0.65rem 0.8rem;
+  background: none; border: 0; border-radius: var(--r-md); cursor: pointer; text-align: left;
+  font-size: 0.95rem; font-weight: 600; color: var(--charcoal);
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.user-menu__item:hover { background: var(--teal-50); color: var(--teal-700); }
+
+@media (max-width: 560px) { .user-menu__name, .user-menu__chev { display: none; } .user-menu__btn { padding: 0.28rem; } }

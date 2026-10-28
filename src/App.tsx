@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Header } from '@/components/layout/Header'
+import { AuthModal } from '@/components/auth/AuthModal'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/sections/Hero'
 import { BookingBar } from '@/sections/BookingBar'
@@ -28,16 +29,19 @@ export default function App() {
       <main>
         <Hero />
         <BookingBar onSubmit={startBooking} />
+        
         <Services />
+        <Booking draft={draft} />
         <Warehousing />
         <Fleet />
         <Process />
         <WhyUs />
-        <Booking draft={draft} />
+        
         <Faq />
         <CtaBand />
       </main>
       <Footer />
+      <AuthModal />
     </>
   )
 }

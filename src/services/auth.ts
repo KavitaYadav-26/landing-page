@@ -1,4 +1,4 @@
-import type { AuthUser } from '@/types'
+import type { AuthUser, BookingRole } from '@/types'
 
 /**
  * Login / registration service.
@@ -80,7 +80,7 @@ export function logout() {
   try { localStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
 }
 
-export interface RegisterInput { name: string; phone: string; email: string; password: string }
+export interface RegisterInput { name: string; phone: string; email: string; password: string; role: BookingRole }
 
 export async function register(input: RegisterInput): Promise<AuthResult> {
   await wait(700)
@@ -100,6 +100,7 @@ export async function register(input: RegisterInput): Promise<AuthResult> {
     name: input.name.trim(),
     phone,
     email,
+    role: input.role,
     passwordHash: await hashPassword(input.password),
   }
   if (!writeUsers([...users, stored])) {

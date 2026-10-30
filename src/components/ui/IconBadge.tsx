@@ -1,11 +1,16 @@
 import type { LucideIcon } from 'lucide-react'
-import './IconBadge.css'
 
-interface IconBadgeProps { icon: LucideIcon; tone?: 'teal' | 'dark' | 'glass'; size?: number }
+interface IconBadgeProps { icon: LucideIcon; tone?: 'brand' | 'dark' | 'glass'; size?: number; className?: string }
 
-export function IconBadge({ icon: Icon, tone = 'teal', size = 24 }: IconBadgeProps) {
+const tones = {
+  brand: 'bg-brand-50 text-brand-ink',
+  dark: 'bg-charcoal text-white',
+  glass: 'border border-white/10 bg-white/[0.06] text-brand-300',
+}
+
+export function IconBadge({ icon: Icon, tone = 'brand', size = 24, className = '' }: IconBadgeProps) {
   return (
-    <span className={`icon-badge icon-badge--${tone}`} aria-hidden="true">
+    <span className={`inline-grid size-13 shrink-0 place-items-center rounded-lg ${tones[tone]} ${className}`.trim()} aria-hidden="true">
       <Icon size={size} strokeWidth={1.75} />
     </span>
   )

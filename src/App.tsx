@@ -1,47 +1,47 @@
-import { useCallback, useState } from 'react'
+import { WhatsAppFab } from '@/components/ui/WhatsAppFab'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { Header } from '@/components/layout/Header'
 import { AuthModal } from '@/components/auth/AuthModal'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/sections/Hero'
-import { BookingBar } from '@/sections/BookingBar'
-import { Services } from '@/sections/Services'
-import { Warehousing } from '@/sections/Warehousing'
-import { Fleet } from '@/sections/Fleet'
-import { Process } from '@/sections/Process'
-import { WhyUs } from '@/sections/WhyUs'
 import { Booking } from '@/sections/Booking'
-import { Faq } from '@/sections/Faq'
+import { Services } from '@/sections/Services'
+import { WhyUs } from '@/sections/WhyUs'
+import { Network } from '@/sections/Network'
+import { Fleet } from '@/sections/Fleet'
 import { CtaBand } from '@/sections/CtaBand'
-import type { BookingDraft } from '@/types'
+import { About } from '@/sections/About'
+import { Process } from '@/sections/Process'
+import { Faq } from '@/sections/Faq'
+import { Contact } from '@/sections/Contact'
 
 export default function App() {
-  const [draft, setDraft] = useState<BookingDraft>({ pickup: '', drop: '', vehicle: '' })
-
-  const startBooking = useCallback((next: BookingDraft) => {
-    setDraft(next)
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
-  }, [])
-
   return (
     <>
-      <a className="skip-link" href="#services">Skip to content</a>
+      <a
+        className="absolute top-[-4rem] left-4 z-[200] rounded-sm bg-ink px-4 py-2.5 text-white transition-[top] duration-200 ease-brand focus:top-4"
+        href="#main"
+      >
+        Skip to content
+      </a>
+      <ScrollProgress />
       <Header />
-      <main>
+      <main id="main">
         <Hero />
-        <BookingBar onSubmit={startBooking} />
-        
+        <Booking />
+        <About />
         <Services />
-        <Booking draft={draft} />
-        <Warehousing />
+        <WhyUs />
+        <Network />
         <Fleet />
         <Process />
-        <WhyUs />
-        
         <Faq />
         <CtaBand />
+        <Contact />
       </main>
       <Footer />
       <AuthModal />
+      <WhatsAppFab />
     </>
   )
 }

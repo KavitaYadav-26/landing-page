@@ -15,3 +15,15 @@ export const images = {
   warehouseWide: pexels(4483610, 1920),
   warehouseAisle: pexels(8377802, 1400),
 }
+
+/**
+ * Hero background. By default a slider cycles through `heroSlides`.
+ * To use video instead, put an MP4 in /public (e.g. /hero.mp4, under about 6 MB, no sound needed) and set heroVideo to '/hero.mp4'.
+ */
+export const heroVideo = ''
+export const heroSlides = [
+  { src: images.hero, alt: 'Truck on an Indian highway', title: 'Road transportation' },
+  { src: images.fleet, alt: 'Flatbed truck carrying heavy cargo', title: 'Full truck load' },
+  { src: images.warehouse, alt: 'Workers handling boxes on warehouse shelves', title: 'Warehousing' },
+  { src: images.warehouseWide, alt: 'Wide view of a distribution warehouse', title: 'Freight and distribution' },
+]

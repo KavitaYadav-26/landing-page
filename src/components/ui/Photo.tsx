@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './Photo.css'
 
 interface PhotoProps {
   src: string
@@ -15,7 +14,10 @@ interface PhotoProps {
 export function Photo({ src, alt, ratio, priority = false, className = '', position = 'center' }: PhotoProps) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className={`photo ${className}`.trim()} style={ratio ? { aspectRatio: ratio } : undefined}>
+    <div
+      className={`relative overflow-hidden bg-linear-to-br from-charcoal to-brand-900 ${className}`.trim()}
+      style={ratio ? { aspectRatio: ratio } : undefined}
+    >
       {!failed && (
         <img
           src={src}
@@ -24,6 +26,7 @@ export function Photo({ src, alt, ratio, priority = false, className = '', posit
           decoding="async"
           fetchPriority={priority ? 'high' : 'auto'}
           style={{ objectPosition: position }}
+          className="size-full object-cover"
           onError={() => setFailed(true)}
         />
       )}

@@ -16,15 +16,17 @@ export const company = {
   email: 'booking@shankhlogistics.in',
   address: '1/8,Sector-1 Gomati Nagar Extension Lucknow -226022(UP).India',
   hours: 'Mon–Sat, 8:00 am – 8:00 pm',
+  /** EDIT ME: paste real profile URLs; empty ones are hidden in the footer. */
+  social: { linkedin: '', facebook: '', instagram: '' },
   year: new Date().getFullYear(),
 }
 
 export const navItems: NavItem[] = [
+  { label: 'Home', href: '#top' },
+  { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#services' },
+  { label: 'Our Network', href: '#network' },
   { label: 'Fleet', href: '#fleet' },
-  { label: 'How it works', href: '#process' },
-  { label: 'Why Shankh', href: '#why' },
-  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ]
 

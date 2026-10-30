@@ -13,16 +13,13 @@ export async function submitBooking(payload: BookingPayload): Promise<BookingRes
   await new Promise((resolve) => setTimeout(resolve, 900))
 
   const reference = `SL-${Date.now().toString().slice(-6)}`
+  // PAN, Aadhaar and GST are deliberately NOT put in the WhatsApp text: they belong in your backend, not in a chat link.
+  const isBroker = payload.role === 'broker'
   const message = [
     `Hello Shankh Logistics, I would like to book a shipment (Ref ${reference}).`,
-    `Booking type: ${payload.role === 'broker' ? 'Broker' : 'Customer'}`,
-    `Name: ${payload.name}`,
-    ...(payload.role === 'broker'
-      ? [
-          `Firm: ${payload.firm}${payload.gst ? ` (GST ${payload.gst})` : ''}`,
-          `Party: ${payload.partyName}, ${payload.partyPhone}`,
-        ]
-      : []),
+    `Booking type: ${isBroker ? 'Broker' : 'Customer'}`,
+    isBroker ? `Broker: ${payload.name}` : `Company: ${payload.companyName}`,
+    `Contact: ${payload.phone}`,
     `Route: ${payload.pickup} to ${payload.drop}`,
     `Cargo: ${payload.cargo}${payload.weight ? `, ${payload.weight}` : ''}`,
     `Vehicle: ${payload.vehicle || 'Not sure'}`,

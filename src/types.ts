@@ -20,15 +20,20 @@ export interface BookingDraft {
 
 export type BookingRole = 'customer' | 'broker'
 
-export interface BookingPayload extends BookingDraft {
+/** One flat shape for both forms. Customer uses companyName/gst; broker uses name. */
+export interface BookingPayload {
   role: BookingRole
-  /** broker only */
-  firm: string
-  gst: string
-  partyName: string
-  partyPhone: string
+  companyName: string
   name: string
+  address: string
+  gst: string
+  pan: string
+  aadhaar: string
   phone: string
+  email: string
+  pickup: string
+  drop: string
+  vehicle: string
   cargo: string
   date: string
   weight: string
@@ -42,4 +47,7 @@ export interface AuthUser {
   name: string
   phone: string
   email: string
+  role?: BookingRole
 }
+
+export interface ContactPayload { name: string; phone: string; email: string; topic: string; message: string }
